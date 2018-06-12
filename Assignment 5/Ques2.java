@@ -3,14 +3,14 @@
 
 import java.util.Scanner;
 class Complex{
-    String real, imaginary;
-    Complex(String real, String imaginary){
+    int real, imaginary;
+    Complex(int real, int imaginary){
         this.real = real;
         this.imaginary = imaginary;
     }
     void Display(){
-        if(Float.valueOf(imaginary) < 0){
-            System.out.println(real+imaginary+"i");
+        if(imaginary < 0){
+            System.out.println(real+""+imaginary+"i");
         }
         else{
             System.out.println(real+"+"+imaginary+"i");
@@ -19,10 +19,10 @@ class Complex{
 }
 public class Ques2 {
     public static void main(String[] args) {
-        String real, imaginary;
+        int real, imaginary;
         Scanner xyz = new Scanner(System.in);
-        real = xyz.next();
-        imaginary = xyz.next();
+        real = xyz.nextInt();
+        imaginary = xyz.nextInt();
         Complex obj = new Complex(real, imaginary);
         obj.Display();
     }   
