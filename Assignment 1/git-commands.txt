@@ -1,0 +1,21 @@
+1. git init : This command turns a directory into an empty Git repository. 
+              This is the first step in creating a local repository. 
+              After running git init, adding and commiting files/directories is possible.
+              It creates the initial .git directory in a new or in an existing project.
+
+2. git add : Before a file is available to commit to a repository, the file needs to be added to the Git index(staging area).
+             There are a few different ways to use git add, by adding entire directories, specific files, or all unstaged files.
+             To add files that are not staged : git add .
+             To stage a specific file : git add demo.txt
+             To stage an entire directory : git add <directory_name>
+
+3. git commit : Record the changes made to the files to a local repository.
+                Each commit has a unique id.
+                Example : git commit -m "my first commit". Adding a commit message helps to find a particular change or understanding the changes.             
+
+4. git status : This command returns the current status of the repository.
+                git status will return the current working branch.
+                If a file is in the staging area, but not committed, it shows with git status.
+                If there are no changes it will return "nothing to commit, working directory clean"
+
+5. git log : Shows a listing of commit on a branch including the corresponding details.
