@@ -1,5 +1,6 @@
 // Write a Java program to remove all vowels from the String. 
 
+import java.util.Scanner;
 public class Ques3{       
     public static boolean checkVowel(char str){
         switch(str) {
@@ -30,6 +31,6 @@ public class Ques3{
                 notVowel += s.charAt(i);
             }
         }
-        System.out.println(String.valueOf(notVowel));
+        System.out.println(notVowel);
     }
 }
