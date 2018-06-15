@@ -3,19 +3,11 @@
 import java.util.Scanner;
 public class Ques1{ 
     static String onReverse(String str){
-        String rev; String old="";
-        int i = 0;
-        for(int j=0; j<str.length(); j = i+1){
-            rev = ""; i=j;
-            while(str.charAt(i) != ' '){
-                rev += str.charAt(i);
-                i++;
-                if(i == str.length())
-                    break;
-            }
-            old = rev + " " + old;
+        String rev="";
+        for(int j=str.length()-1; j>=0; j--){
+            rev += str.charAt(j);
         }
-        return old;
+        return rev;
     }
     
     public static void main(String... arg){
