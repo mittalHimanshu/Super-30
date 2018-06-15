@@ -4,12 +4,12 @@ import java.util.Scanner;
 public class Ques2{    
     public static void findSubstring(String s){
 	      if(s == null || s.length() == 0){
-            return;
+              	return;
 	      }		
 	      for(int i = 0; i < s.length(); i++){
-            for(int j = 1; j <= s.length()-i; j++){
-		            System.out.println(s.substring(i, i+j));
-            }
+            	for(int j = 1; j <= s.length()-i; j++){
+			System.out.println(s.substring(i, i+j));
+            	}
 	      }
     }
     public static void main(String... arg){
