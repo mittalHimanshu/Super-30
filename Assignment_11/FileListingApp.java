@@ -10,7 +10,7 @@ public class FileListingApp{
     
     public static void Files(String path, ArrayList al) throws IOException {
 	File f=new File(path);
-		try{
+	try{
             File f1[]=f.listFiles();
             for(File file:f1){
                 if(file.isDirectory() == true){
@@ -36,7 +36,7 @@ public class FileListingApp{
 	System.out.println("Enter path of File/Directory : ");
 	String address = xyz.nextLine();
         System.out.println("Enter path of csv file : ");
-		String address1 = xyz.nextLine();
+	String address1 = xyz.nextLine();
         xyz.close();
         PrintWriter print = new PrintWriter("paths.txt");
         print.append(address);
@@ -46,9 +46,9 @@ public class FileListingApp{
         print.close();
         String location[] = new String[2];
         int j = 0;
-		ArrayList<File> arrayList=new ArrayList<>();
+	ArrayList<File> arrayList=new ArrayList<>();
         PrintWriter out = null;
-		try{
+	try{
             File f1 = new File("paths.txt");
             BufferedReader br = new BufferedReader(new FileReader(f1));
             String line;
@@ -63,18 +63,18 @@ public class FileListingApp{
             out.append("Name of File,Path of File\n\r");
             for(int i=0;i<arrayList.size();i++){
                 out.append(arrayList.get(i).getName() + ",");
-				out.append(arrayList.get(i).getAbsolutePath());
-				out.println();
-				out.flush();
+		out.append(arrayList.get(i).getAbsolutePath());
+		out.println();
+		out.flush();
             }
-		}
+	}
         catch(IOException e){
             System.out.println(e.getMessage());
-		}
+	}
         finally {
             if(out != null){
                 out.close();
             }
-		}
+	}
     }
 }
