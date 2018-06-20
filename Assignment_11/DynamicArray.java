@@ -78,6 +78,8 @@ public class DynamicArray <T> {
         }
         
         obj.set(101, 75);	
+	    
+	System.out.println(obj.get(4));
         
         while (!obj.isEmpty()){
             System.out.println(obj.removeLast());
