@@ -9,8 +9,8 @@
 
 public class DynamicStack <T> {
     
-    Object arr[];
-    int index;
+    private Object arr[];
+    private int index;
     
     public DynamicStack() {
         this.arr = new Object[5];
