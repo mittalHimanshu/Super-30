@@ -55,7 +55,7 @@ public class DynamicStack <T> {
     }
     
     private void increaseSize(){
-        Object temp[] = new Object[arr.length * 2];
+        Object temp[] = new Object[(int)(arr.length * 1.5)];
         System.arraycopy(arr, 0, temp, 0, arr.length);
         arr = temp;
     }
