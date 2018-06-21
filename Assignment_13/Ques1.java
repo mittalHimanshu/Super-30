@@ -74,18 +74,18 @@ public class Ques1 {
     
     public static String convertDate(String date) {
         String result = "";
-	String d = date.substring(0, 2);
-	String m = date.substring(3, 5);
-	String yL = date.substring(6, 8);
-	String yR = date.substring(8, 10);
-        result += dateValue.get(d);
-        result += monthValue.get(m);
-        result += convertToWords(yL);
-        if(yR.equals("00")){
+	String firstDate = date.substring(0, 2);
+	String month = date.substring(3, 5);
+	String year1 = date.substring(6, 8);
+	String year2 = date.substring(8, 10);
+        result += dateValue.get(firstDate);
+        result += monthValue.get(month);
+        result += convertToWords(year1);
+        if(year2.equals("00")){
             result += "hundred";
         }
         else{
-        result += convertToWords(yR);
+        result += convertToWords(year2);
         }
 	return result;
     }
