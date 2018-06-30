@@ -46,7 +46,7 @@ public class ListViewActivity extends AppCompatActivity {
         dialogBuilder.setView(dialogView);
 
         final EditText edt = (EditText) dialogView.findViewById(R.id.alert);
-
+        edt.requestFocus();
         dialogBuilder.setMessage("Add a Note");
         dialogBuilder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
