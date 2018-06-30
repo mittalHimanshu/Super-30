@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +50,13 @@ public class ListViewActivity extends AppCompatActivity {
         dialogBuilder.setMessage("Add a Note");
         dialogBuilder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                db.addNote(edt.getText().toString());
-                list.setAdapter(db.fetchNotes());
+                if(edt.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "Note cannot be empty", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    db.addNote(edt.getText().toString());
+                    list.setAdapter(db.fetchNotes());
+                }
             }
         });
         dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
