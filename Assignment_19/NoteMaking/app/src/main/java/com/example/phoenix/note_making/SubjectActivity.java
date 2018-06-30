@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SubjectActivity extends AppCompatActivity {
 
@@ -25,11 +26,16 @@ public class SubjectActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View view) {
-                Intent i = new Intent(SubjectActivity.this, ListViewActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("Subject", subName.getText().toString());
-                i.putExtras(bundle);
-                startActivity(i);
+                if(subName.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "Enter a Subject", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent i = new Intent(SubjectActivity.this, ListViewActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Subject", subName.getText().toString());
+                    i.putExtras(bundle);
+                    startActivity(i);
+                }
             }
         });
     }
