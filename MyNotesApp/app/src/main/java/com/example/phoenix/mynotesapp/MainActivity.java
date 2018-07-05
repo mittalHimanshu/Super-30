@@ -8,30 +8,42 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
-import static com.example.phoenix.mynotesapp.NoteActivity.editor;
-
 public class MainActivity extends AppCompatActivity {
-
     ListView listView;
     NoteAdapter noteAdapter;
     static SharedPreferences sharedPreferences;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("ffttrr", "hi");
+        Log.d("lkjh", "hi");
         sharedPreferences = getSharedPreferences("myPref", Context.MODE_PRIVATE);
         listView = (ListView) findViewById(R.id.main_listview);
-        noteAdapter = new NoteAdapter();
+        noteAdapter = new NoteAdapter(this);
         try{
             if(NoteActivity.checkStatus()){
                 listView.setAdapter(noteAdapter);
             }
         }
-        catch(Exception e){Log.d("ffttrr", e.getMessage());}
+        catch(Exception e){}
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Note n;
+                    n = (Note) listView.getItemAtPosition(i);
+                    Intent in = new Intent(MainActivity.this, NoteActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("title", n.getTitle());
+                    bundle.putString("content", n.getContent());
+                    in.putExtras(bundle);
+                    startActivity(in);
+            }
+        });
     }
 
     @Override
@@ -51,5 +63,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
 }

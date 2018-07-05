@@ -1,13 +1,9 @@
 package com.example.phoenix.mynotesapp;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import static com.example.phoenix.mynotesapp.NoteActivity.editor;
 
 public class SplashScreen extends AppCompatActivity {
 

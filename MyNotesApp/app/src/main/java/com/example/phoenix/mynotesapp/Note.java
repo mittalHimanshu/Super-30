@@ -1,7 +1,6 @@
 package com.example.phoenix.mynotesapp;
 
 import android.os.Environment;
-import android.util.Log;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import java.io.File;
@@ -9,13 +8,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.io.Serializable;
-import static com.example.phoenix.mynotesapp.MainActivity.sharedPreferences;
-
 
 public class Note implements Serializable, ExclusionStrategy {
     private static Note note;
@@ -31,6 +27,10 @@ public class Note implements Serializable, ExclusionStrategy {
     public Note(String title, String content) {
         dateTime = formatter.format(date);
         this.title = title;
+        this.content = content;
+    }
+
+    public void setContent(String content) {
         this.content = content;
     }
 
@@ -65,9 +65,7 @@ public class Note implements Serializable, ExclusionStrategy {
             Object loadObj = in.readObject();
             notes = (ArrayList<Note>) loadObj;
             in.close();
-        } catch (Exception e) {
-            Log.d("poiuy", e.getMessage());
-        }
+        } catch (Exception e) { }
         return notes;
     }
 
