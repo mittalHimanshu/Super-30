@@ -36,17 +36,25 @@ public class NoteActivity extends AppCompatActivity {
         switch(id){
             case R.id.save:
             {
-                editor = sharedPreferences.edit();
-                editor.putString("isAdded", "true");
-                editor.commit();
-                Note.insertNote(title_edit.getText().toString(), body_edit.getText().toString());
-                Intent i = new Intent(NoteActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        editor = sharedPreferences.edit();
+                        editor.putString("isAdded", "true");
+                        editor.commit();
+                        Note.insertNote(title_edit.getText().toString(), body_edit.getText().toString());
+                        Intent i = new Intent(NoteActivity.this, MainActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                };
+                Thread thread = new Thread(runnable);
+                thread.start();
             }
         }
         return true;
     }
+
 
     public static boolean checkStatus(){
         try{

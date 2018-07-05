@@ -2,22 +2,25 @@ package com.example.phoenix.mynotesapp;
 
 import android.os.Environment;
 import android.util.Log;
-
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.io.Serializable;
+import static com.example.phoenix.mynotesapp.MainActivity.sharedPreferences;
 
 
-public class Note implements Serializable {
+public class Note implements Serializable, ExclusionStrategy {
     private static Note note;
     private static ArrayList<Note> notes = new ArrayList<>();
-    private static ArrayList<Note> notes1 = new ArrayList<>();
+    static ArrayList<Note> notes1 = new ArrayList<>();
     String title;
     String content;
     String dateTime;
@@ -52,19 +55,31 @@ public class Note implements Serializable {
             out.writeObject(notes1);
             out.flush();
         }
-        catch (Exception e){}
+        catch (Exception e){ }
     }
 
     public static ArrayList<Note> getNotes() {
         try {
             FileInputStream fin = new FileInputStream(file);
             ObjectInputStream in = new ObjectInputStream(fin);
-            Object loadObj = null;
-            while((loadObj = in.readObject()) != null){
-                notes = (ArrayList<Note>) loadObj;
-            }
+            Object loadObj = in.readObject();
+            notes = (ArrayList<Note>) loadObj;
             in.close();
-        } catch (Exception e) { }
+        } catch (Exception e) {
+            Log.d("poiuy", e.getMessage());
+        }
         return notes;
+    }
+
+
+    @Override
+    public boolean shouldSkipField(FieldAttributes f) {
+        return f.getDeclaredClass() == SimpleDateFormat.class;
+
+    }
+
+    @Override
+    public boolean shouldSkipClass(Class<?> clazz) {
+        return false;
     }
 }

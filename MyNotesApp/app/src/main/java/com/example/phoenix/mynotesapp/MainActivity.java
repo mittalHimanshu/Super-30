@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+
+import static com.example.phoenix.mynotesapp.NoteActivity.editor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,12 +22,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("ffttrr", "hi");
         sharedPreferences = getSharedPreferences("myPref", Context.MODE_PRIVATE);
         listView = (ListView) findViewById(R.id.main_listview);
         noteAdapter = new NoteAdapter();
-        if(NoteActivity.checkStatus()){
-            listView.setAdapter(noteAdapter);
+        try{
+            if(NoteActivity.checkStatus()){
+                listView.setAdapter(noteAdapter);
+            }
         }
+        catch(Exception e){Log.d("ffttrr", e.getMessage());}
     }
 
     @Override
@@ -44,4 +51,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
 }

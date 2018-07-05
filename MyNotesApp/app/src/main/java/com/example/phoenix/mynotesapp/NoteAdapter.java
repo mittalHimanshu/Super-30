@@ -1,6 +1,7 @@
 package com.example.phoenix.mynotesapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,9 @@ import java.util.ArrayList;
 
 public class NoteAdapter extends BaseAdapter {
     ArrayList<Note> notes;
+    String json;
     NoteAdapter(){
-        if(NoteActivity.checkStatus()){
+        if (NoteActivity.checkStatus()) {
             notes = Note.getNotes();
         }
     }
