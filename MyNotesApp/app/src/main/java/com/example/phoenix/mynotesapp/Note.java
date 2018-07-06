@@ -19,8 +19,8 @@ public class Note implements Serializable, ExclusionStrategy {
     String dateTime;
     Date date = new Date();
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    static File file = new File(Environment.getExternalStorageDirectory() + "/notes.txt");
-
+    static File myFile = new File(Environment.getExternalStorageDirectory() + File.separator + "MyNotes");
+    static File file  = new File(myFile.getAbsolutePath() + File.separator + "MyNotes.data");
     public Note(String title, String content) {
         this.dateTime = getCurrentDateTime();
         this.title = title;
@@ -42,7 +42,6 @@ public class Note implements Serializable, ExclusionStrategy {
     }
 
     public String getTitle() {
-
         return title;
     }
 

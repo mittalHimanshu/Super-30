@@ -161,7 +161,7 @@ public class NoteActivity extends AppCompatActivity {
         };
         Thread thread = new Thread(runnable);
         thread.start();
-        Toast.makeText(getApplicationContext(),"note deleted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"Note deleted", Toast.LENGTH_SHORT).show();
     }
 
 

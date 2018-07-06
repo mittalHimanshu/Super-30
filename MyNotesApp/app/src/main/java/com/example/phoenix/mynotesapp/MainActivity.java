@@ -17,6 +17,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
+import static com.example.phoenix.mynotesapp.Note.file;
+import static com.example.phoenix.mynotesapp.Note.myFile;
+
 public class MainActivity extends AppCompatActivity {
     ListView listView;
     NoteAdapter noteAdapter;
@@ -26,6 +31,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(!myFile.exists()){
+            myFile.mkdirs();
+        }
+        if(!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         sharedPreferences = getSharedPreferences("myPref", Context.MODE_PRIVATE);
         noteAdapter = new NoteAdapter();
         try{
@@ -40,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         if (permission != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("This notes will not be permanently saved because you didn't give Storage Permissions !!! Click Ok to grant permission");
+                builder.setMessage("This note will not be permanently saved because you didn't give Storage Permissions !!! Click Ok to grant permission");
                 builder.setTitle("Requesting Permissions");
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -86,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         catch (Exception e) {}
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
