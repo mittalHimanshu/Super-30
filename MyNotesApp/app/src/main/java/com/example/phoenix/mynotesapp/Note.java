@@ -64,7 +64,6 @@ public class Note implements Serializable, ExclusionStrategy {
         return notes;
     }
 
-
     @Override
     public boolean shouldSkipField(FieldAttributes f) {
         return f.getDeclaredClass() == SimpleDateFormat.class;

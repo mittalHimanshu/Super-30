@@ -11,9 +11,7 @@ import java.util.ArrayList;
 public class NoteAdapter extends BaseAdapter {
     ArrayList<Note> notes;
     NoteAdapter(){
-        if (NoteActivity.checkStatus()) {
-            notes = Note.getNotes();
-        }
+        notes = Note.getNotes();
     }
 
     @Override
@@ -33,23 +31,19 @@ public class NoteAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        try{
-            NotesViewHolder holder;
-            if (view == null) {
-                LayoutInflater li = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = li.inflate(R.layout.item_note, viewGroup, false);
-                holder = new NotesViewHolder(view);
-                view.setTag(holder);
-            } else {
-                holder = (NotesViewHolder) view.getTag();
-            }
-            Note note = getItem(i);
-            holder.list_note_title.setText(note.getTitle());
-            holder.list_note_content.setText(note.getContent());
-            holder.list_note_date.setText(note.getDateTime());
-            return view;
+        NotesViewHolder holder;
+        if (view == null) {
+            LayoutInflater li = (LayoutInflater) viewGroup.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = li.inflate(R.layout.item_note, viewGroup, false);
+            holder = new NotesViewHolder(view);
+            view.setTag(holder);
+        } else {
+            holder = (NotesViewHolder) view.getTag();
         }
-        catch (Exception e){}
+        Note note = getItem(i);
+        holder.list_note_title.setText(note.getTitle());
+        holder.list_note_content.setText(note.getContent());
+        holder.list_note_date.setText(note.getDateTime());
         return view;
     }
 

@@ -2,7 +2,6 @@ package com.example.phoenix.mynotesapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,16 +12,15 @@ import android.widget.Toast;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import static com.example.phoenix.mynotesapp.MainActivity.sharedPreferences;
 import static com.example.phoenix.mynotesapp.Note.file;
 
 public class NoteActivity extends AppCompatActivity {
     EditText title_edit, body_edit;
-    static SharedPreferences.Editor editor;
     ArrayList<Note> deleteNotes = new ArrayList<>();
     ArrayList<Note> updateNotes = new ArrayList<>();
     String title, content, dateTime;
     AlertDialog.Builder a;
+    int selection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +34,10 @@ public class NoteActivity extends AppCompatActivity {
             title = bundle.getString("title");
             content = bundle.getString("content");
             dateTime = bundle.getString("dateTime");
+            selection = bundle.getInt("selection");
             title_edit.setText(title);
             body_edit.setText(content);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) { }
     }
 
     @Override
@@ -76,9 +74,6 @@ public class NoteActivity extends AppCompatActivity {
     private void saveNotes() {
         title = title_edit.getText().toString();
         content = body_edit.getText().toString();
-        editor = sharedPreferences.edit();
-        editor.putString("isAdded", "true");
-        editor.commit();
         for(int i=0; i<updateNotes.size(); i++){
             if(title.equals(updateNotes.get(i).getTitle())){
                 updateNotes.get(i).setContent(content);
@@ -87,17 +82,21 @@ public class NoteActivity extends AppCompatActivity {
                 return;
             }
             else if(content.equals(updateNotes.get(i).getContent())){
-                updateNotes.get(i).setTitle(title);
                 updateNotes.get(i).setDateTime(new Note().getCurrentDateTime());
                 showAnotherAlertBox();
                 return;
             }
         }
         Note n = new Note(title_edit.getText().toString(), body_edit.getText().toString());
-        updateNotes.add(n);
-        updateCurrentNotes(updateNotes);
-        Toast.makeText(getApplicationContext(), title_edit.getText().toString() + " note added", Toast.LENGTH_SHORT).show();
-        moveToMainActivity();
+        if(title_edit.getText().toString().equals("")){
+            setError();
+        }
+        else{
+            updateNotes.add(n);
+            updateCurrentNotes(updateNotes);
+            Toast.makeText(getApplicationContext(), title_edit.getText().toString() + " note added", Toast.LENGTH_SHORT).show();
+            moveToMainActivity();
+        }
     }
 
     private void showAnotherAlertBox(){
@@ -105,23 +104,39 @@ public class NoteActivity extends AppCompatActivity {
         a.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int p) {
-                updateCurrentNotes(updateNotes);
-                Toast.makeText(getApplicationContext(), title + " updated", Toast.LENGTH_SHORT).show();
-                moveToMainActivity();
+                if(!title_edit.getText().toString().equals("")){
+                    updateNotes.get(selection).setTitle(title_edit.getText().toString());
+                    updateCurrentNotes(updateNotes);
+                    Toast.makeText(getApplicationContext(), title + " updated", Toast.LENGTH_SHORT).show();
+                    moveToMainActivity();
+                }
+                else{
+                    setError();
+                }
             }
         });
         a.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Note n = new Note(title_edit.getText().toString(), body_edit.getText().toString());
-                updateNotes.add(n);
-                updateCurrentNotes(updateNotes);
-                Toast.makeText(getApplicationContext(), title_edit.getText().toString() + " note added", Toast.LENGTH_SHORT).show();
-                moveToMainActivity();
+                if(title_edit.getText().toString().equals("")){
+                    setError();
+                }
+                else{
+                    updateNotes.add(n);
+                    updateCurrentNotes(updateNotes);
+                    Toast.makeText(getApplicationContext(), title_edit.getText().toString() + " note added", Toast.LENGTH_SHORT).show();
+                    moveToMainActivity();
+                }
             }
         });
         AlertDialog alert = a.create();
         alert.show();
+    }
+
+    private void setError() {
+        title_edit.setError("Title cannot be empty !!!");
+        title_edit.requestFocus();
     }
 
     private void showAlertBox() {
@@ -155,26 +170,13 @@ public class NoteActivity extends AppCompatActivity {
                     }
                     updateCurrentNotes(deleteNotes);
                     moveToMainActivity();
+                    Toast.makeText(getApplicationContext(),"Note deleted", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                 }
             }
         };
         Thread thread = new Thread(runnable);
         thread.start();
-        Toast.makeText(getApplicationContext(),"Note deleted", Toast.LENGTH_SHORT).show();
-    }
-
-
-    public static boolean checkStatus() {
-        try {
-            String value = sharedPreferences.getString("isAdded", "false");
-            if (value.equals("true"))
-                return true;
-            else
-                return false;
-        } catch (Exception e) {
-        }
-        return false;
     }
 
     public void updateCurrentNotes(final ArrayList<Note> temp){
