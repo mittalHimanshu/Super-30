@@ -1,1 +1,1 @@
-Module 2 and Module 3 are implemented in this project till now. You can download the respective apk of the project by <a href="https://drive.google.com/open?id=1Gpndv-OGpTsa2zEKrxdXqsthYaik5Of1"> Clicking Here </a>.
+Module 2, Module 3, Module 5 and Module 6 are implemented in this project till now. You can download the respective apk of the project by <a href="https://drive.google.com/open?id=1AqQpXqp2ik6sW5-V9Mqp794q2jIjKdnP"> Clicking Here </a>.
