@@ -6,13 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class NoteAdapter extends BaseAdapter {
     ArrayList<Note> notes;
-    NoteAdapter(Context context){
+    NoteAdapter(){
         if (NoteActivity.checkStatus()) {
             notes = Note.getNotes();
         }

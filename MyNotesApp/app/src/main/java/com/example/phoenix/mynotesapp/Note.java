@@ -5,16 +5,13 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.io.Serializable;
 
 public class Note implements Serializable, ExclusionStrategy {
-    private static Note note;
     private static ArrayList<Note> notes = new ArrayList<>();
     static ArrayList<Note> notes1 = new ArrayList<>();
     String title;
@@ -25,16 +22,27 @@ public class Note implements Serializable, ExclusionStrategy {
     static File file = new File(Environment.getExternalStorageDirectory() + "/notes.txt");
 
     public Note(String title, String content) {
-        dateTime = formatter.format(date);
+        this.dateTime = getCurrentDateTime();
         this.title = title;
         this.content = content;
     }
+
+    public Note(){}
 
     public void setContent(String content) {
         this.content = content;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
     public String getTitle() {
+
         return title;
     }
 
@@ -44,18 +52,6 @@ public class Note implements Serializable, ExclusionStrategy {
 
     public String getDateTime() {
         return dateTime;
-    }
-
-    public static void insertNote(String title, String content) {
-        note = new Note(title, content);
-        notes1.add(note);
-        try {
-            FileOutputStream fout = new FileOutputStream(file);
-            ObjectOutputStream out = new ObjectOutputStream(fout);
-            out.writeObject(notes1);
-            out.flush();
-        }
-        catch (Exception e){ }
     }
 
     public static ArrayList<Note> getNotes() {
@@ -79,5 +75,10 @@ public class Note implements Serializable, ExclusionStrategy {
     @Override
     public boolean shouldSkipClass(Class<?> clazz) {
         return false;
+    }
+
+    public String getCurrentDateTime(){
+        dateTime = formatter.format(date);
+        return dateTime;
     }
 }
