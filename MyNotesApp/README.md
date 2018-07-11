@@ -1,6 +1,6 @@
 ## APK Link
 
-<a href="https://drive.google.com/open?id=1oVe5ca1mWgSSsEmnOvkuNhXabVK3cT_q"> Click here to download apk </a>.
+<a href="https://drive.google.com/open?id=1oVe5ca1mWgSSsEmnOvkuNhXabVK3cT_q"> Click here to download the apk </a>.
 
 ## Features
 
