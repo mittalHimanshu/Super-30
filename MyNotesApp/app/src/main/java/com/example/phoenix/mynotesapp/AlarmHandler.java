@@ -7,13 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
-import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
-
-import java.util.ArrayList;
-
 import static android.content.Context.NOTIFICATION_SERVICE;
 
 public class AlarmHandler extends BroadcastReceiver {

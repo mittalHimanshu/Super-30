@@ -2,8 +2,6 @@ package com.example.phoenix.mynotesapp;
 
 import android.app.AlarmManager;
 import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -13,7 +11,6 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -21,10 +18,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import static com.example.phoenix.mynotesapp.Note.file;
 
 public class NoteActivity extends AppCompatActivity {
@@ -280,7 +275,6 @@ public class NoteActivity extends AppCompatActivity {
                     0);
         }
     }
-
 
     private void setAlarm(long timeInMillis) {
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);

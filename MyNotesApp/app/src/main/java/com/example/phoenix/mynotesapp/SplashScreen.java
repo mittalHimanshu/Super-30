@@ -90,9 +90,3 @@ public class SplashScreen extends AppCompatActivity {
         }, SPLASH_TIMEOUT);
     }
 }
-
-
-
-//                    Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
-//                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                    startActivity(i);
