@@ -6,7 +6,7 @@
 
 ```
 1. Storage permission checks for Android 6.0 Marshmallow and above.
-2. Internal storage of all the notes in device under the path MyNotes/MyNotes.data .However the file is serialized with objects so it will    not be human readable so that others cannot peek at his/her notes.
+2. Internal storage of all the notes in device under the path MyNotes/MyNotes.data .However the file is serialized with objects so it will not be human readable so that others cannot peek at his/her notes.
 3. User can Insert, Delete, Update the note according to his requirement.
 4. Material Interface for displaying Notes.
 5. User can also set a particular Alarm / Reminder against a particular notifcation. 
