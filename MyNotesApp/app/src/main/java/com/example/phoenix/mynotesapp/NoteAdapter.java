@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
@@ -43,13 +44,21 @@ public class NoteAdapter extends BaseAdapter {
         Note note = getItem(i);
         holder.list_note_title.setText(note.getTitle());
         holder.list_note_content.setText(note.getContent());
-        holder.list_note_date.setText(note.getDateTime());
+        if(note.getAlarmTIme().equals("null : null")){
+            holder.imageView.setVisibility(View.GONE);
+            holder.list_note_date.setText(note.getDateTime());
+        }
+        else{
+            holder.list_note_date.setText(note.getDateTime() + "                   " + note.getAlarmTIme());
+        }
         return view;
     }
 
     class NotesViewHolder {
         TextView list_note_title, list_note_date, list_note_content;
+        ImageView imageView;
         NotesViewHolder(View view) {
+            imageView =  view.findViewById(R.id.imageView);
             list_note_title = view.findViewById(R.id.list_note_title);
             list_note_date = view.findViewById(R.id.list_note_date);
             list_note_content = view.findViewById(R.id.list_note_content);

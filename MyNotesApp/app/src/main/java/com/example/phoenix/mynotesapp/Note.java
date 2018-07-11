@@ -13,18 +13,27 @@ import java.io.Serializable;
 
 public class Note implements Serializable, ExclusionStrategy {
     private static ArrayList<Note> notes = new ArrayList<>();
-    static ArrayList<Note> notes1 = new ArrayList<>();
     String title;
     String content;
     String dateTime;
+    String alarmTIme = "";
     Date date = new Date();
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     static File myFile = new File(Environment.getExternalStorageDirectory() + File.separator + "MyNotes");
     static File file  = new File(myFile.getAbsolutePath() + File.separator + "MyNotes.data");
-    public Note(String title, String content) {
+    public Note(String title, String content, String alarmTIme) {
         this.dateTime = getCurrentDateTime();
         this.title = title;
         this.content = content;
+        this.alarmTIme = alarmTIme;
+    }
+
+    public String getAlarmTIme() {
+        return alarmTIme;
+    }
+
+    public void setAlarmTIme(String alarmTIme) {
+        this.alarmTIme = alarmTIme;
     }
 
     public Note(){}
