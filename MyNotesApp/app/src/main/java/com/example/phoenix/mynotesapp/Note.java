@@ -1,12 +1,15 @@
 package com.example.phoenix.mynotesapp;
 
 import android.os.Environment;
+import android.support.annotation.NonNull;
+
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.io.Serializable;
@@ -72,6 +75,24 @@ public class Note implements Serializable, ExclusionStrategy {
         } catch (Exception e) { }
         return notes;
     }
+
+    public static Comparator<Note> titleComparator = new Comparator<Note>() {
+        @Override
+        public int compare(Note note, Note t1) {
+            String title = note.getTitle();
+            String title1 = t1.getTitle();
+            return title.compareTo(title1);
+        }
+    };
+
+    public static Comparator<Note> timeComparator = new Comparator<Note>() {
+        @Override
+        public int compare(Note note, Note t1) {
+            String dateTime = note.getDateTime();
+            String dateTime1 = t1.getDateTime();
+            return dateTime1.compareTo(dateTime);
+        }
+    };
 
     @Override
     public boolean shouldSkipField(FieldAttributes f) {

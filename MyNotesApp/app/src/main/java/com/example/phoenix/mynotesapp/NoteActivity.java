@@ -210,7 +210,7 @@ public class NoteActivity extends AppCompatActivity {
         alarmManager.cancel(alarmIntent);
     }
 
-    public void updateCurrentNotes(final ArrayList<Note> temp){
+    public static void updateCurrentNotes(final ArrayList<Note> temp){
         Runnable runnable = new Runnable() {
             @Override
             public void run() {

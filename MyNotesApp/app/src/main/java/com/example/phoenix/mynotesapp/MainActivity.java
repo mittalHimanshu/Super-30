@@ -10,9 +10,15 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+import static com.example.phoenix.mynotesapp.NoteActivity.updateCurrentNotes;
+
 public class MainActivity extends AppCompatActivity {
     ListView listView;
     NoteAdapter noteAdapter;
+    ArrayList<Note> note = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +66,26 @@ public class MainActivity extends AppCompatActivity {
             case R.id.add: {
                 Intent i = new Intent(MainActivity.this, NoteActivity.class);
                 startActivity(i);
+                break;
+            }
+
+            case R.id.titleSort: {
+                note = Note.getNotes();
+                Collections.sort(note, Note.titleComparator);
+                updateCurrentNotes(note);
+                Intent intent = getIntent();
+                startActivity(intent);
+                finish();
+                break;
+            }
+
+            case R.id.timeSort: {
+                note = Note.getNotes();
+                Collections.sort(note, Note.timeComparator);
+                updateCurrentNotes(note);
+                Intent intent = getIntent();
+                startActivity(intent);
+                finish();
             }
         }
         return true;

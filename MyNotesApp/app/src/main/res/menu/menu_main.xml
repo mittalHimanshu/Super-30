@@ -6,4 +6,12 @@
         android:title="Add"
         app:showAsAction="always"
         android:icon="@drawable/ic_note_add_black_24dp"/>
+
+    <item
+        android:id="@+id/titleSort"
+        android:title="Sort By Title"/>
+
+    <item
+        android:id="@+id/timeSort"
+        android:title="Sort By Time"/>
 </menu>
