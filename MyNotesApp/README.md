@@ -11,6 +11,7 @@
 4. Material Interface for displaying Notes.
 5. User can also set a particular Alarm / Reminder against a particular notifcation. 
 6. User will be notified through an alarm ringtone with a notification in the Notification Bar of Android.
+7. User can sort their notes according to title or time as per their requirement.
 ```
 
 ## Screenshots
