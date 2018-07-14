@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'MyNotes'
+            keyPassword 'H1m@nshu'
+            storeFile file('C:/Keys/MyNotes.jks')
+            storePassword 'H1m@nshu'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.phoenix.mynotesapp"
@@ -14,6 +22,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }

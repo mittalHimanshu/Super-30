@@ -9,10 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Collections;
-
 import static com.example.phoenix.mynotesapp.NoteActivity.updateCurrentNotes;
 
 public class MainActivity extends AppCompatActivity {
